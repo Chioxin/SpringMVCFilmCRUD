@@ -1,5 +1,5 @@
 ## Spring MVC Film C.R.U.D. Project
 
-test this merge conflict with some gibberish:
-ghcjkl;'jhgfxgffjkl;jhgffghjklhgf
-* Mark
+
+NO YOU CAN'T CONFLICT WITH ME WHAT ARE YOU DOING!?!?!?!?!? AHHHHHHHHHHHHHHHHH!!!!!!!!
+>>>>>>> e17a7dbaf1c91b351a3ab75c53b829f22290d85d
