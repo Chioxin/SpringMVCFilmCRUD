@@ -13,15 +13,14 @@ import com.skilldistillery.mvcfilmsite.data.DatabaseAccessor;
 public class TestController {
 	
 	@Autowired
-	private DatabaseAccessor filmDB;
+	private DatabaseAccessor dao;
 	
 	@RequestMapping(path="testDisplay.do", method=RequestMethod.GET)
 	public ModelAndView displayPage() {
-		Film testFilm = filmDB.findFilmById(1);
+		Film testFilm = dao.findFilmById(1);
 		
 		ModelAndView mv = new ModelAndView("WEB-INF/Views/display.jsp");
 		mv.addObject("film", testFilm);
-		
 		
 		return mv;
 	}
