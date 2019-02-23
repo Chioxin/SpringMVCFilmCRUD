@@ -1,5 +1,8 @@
 package com.skilldistillery.mvcfilmsite.controllers.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,21 @@ public class TestController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(path="testListDisplay.do", method=RequestMethod.GET)
+	public ModelAndView displayList() {
+		List<Film> myList = new ArrayList();
+		myList.add(new Film("Dumb", 1));
+		myList.add(new Film("Dumber", 1));
+		myList.add(new Film("Just stupid", 1));
+		myList.add(new Film("Really?", 1));
+		
+		
+		ModelAndView mv = new ModelAndView("WEB-INF/Views/display.jsp");
+		mv.addObject("filmList", myList);
+		return mv;
+	}
+	
 	@RequestMapping(path="testAdd.do", method=RequestMethod.GET)
 	public ModelAndView addFilmPage() {
 		ModelAndView mv = new ModelAndView("WEB-INF/Views/addFilm.jsp");
