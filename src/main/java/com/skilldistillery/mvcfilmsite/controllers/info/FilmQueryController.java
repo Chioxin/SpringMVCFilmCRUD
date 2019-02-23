@@ -55,10 +55,11 @@ public class FilmQueryController {
 		return mv;
 	}
 	@RequestMapping(path ="add.do", method = RequestMethod.POST)
-	public ModelAndView addFilm() {
+	public ModelAndView addFilmToDB() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/addFilm.jsp");
 		return mv;
 	}
+//	add a language to language ID method. 
 	
 }
