@@ -12,11 +12,14 @@
 <body>
 
 	<div>
-	
-	<h2>Film: ${film.title}($film.releaseyear) (rated: ${film.rating})</h2>
+	<h2>${film.releaseYear}</h2>
+	<h2>Film: ${film.title}(${film.releaseYear}) (rated:${film.rating})</h2>
 	<p>Language: ${film.language}</p>
+	<p></p>
 	<p>
-	<p>
+	<h3>Description</h3>
+	<blockquote>${film.description }</blockquote>
+	</p>
 	
 	
 	</div>

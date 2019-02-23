@@ -69,7 +69,7 @@ public class Film {
 	}
 
 	public String getReleaseYear() {
-		return releaseYear;
+		return releaseYear.substring(0, 4);
 	}
 
 	public void setReleaseYear(String release_year) {
