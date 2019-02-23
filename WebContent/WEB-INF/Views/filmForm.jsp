@@ -13,27 +13,30 @@
 	
 		<form action="addFilm.do" method="POST">
 		 	Title:<br>
-			<input type="text" name="title"><br>
+			<input type="text" name="Title"><br>
 		 	Description:<br>
 			<input type="text" name="Description"><br>
 		 	Rating:<br>
-			<input type="text" name="Rating"><br>
-		 	Length:<br>
+			<!-- <input type="text" name="Rating"><br>
+		 	Length:<br> -->
 			<input type="text" name="Length"><br>
 		 	Release Year:<br>
 			<input type="text" name="ReleaseYear"><br>
 		 	Rental Rate:<br>
 			<input type="text" name="RentalRate"><br>
+		 	Rental Duration:<br>
+			<input type="text" name="RentalDuration"><br>
 		 	Replacement Cost:<br>
 			<input type="text" name="ReplacementCost"><br>
 		 	Special Features:<br>
 			<input type="text" name="SpecialFeatures"><br>
-			<select name="Language">
-				<option value="English">English</option>
-				<option value="Italian">Italian</option>
-				<option value="Japanese">Japanese</option>
-				<option value="Manderin">Manderin</option>
-				<option value="German">German</option>
+			Language<br>
+			<select name="LanguageId">
+				<option value="1">English</option>
+				<option value="2">Italian</option>
+				<option value="3">Japanese</option>
+				<option value="4">Manderin</option>
+				<option value="5">German</option>
 			</select>
 			
 			
