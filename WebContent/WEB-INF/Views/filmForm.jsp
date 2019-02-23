@@ -15,54 +15,37 @@
 		 	Title:<br>
 			<input type="text" name="title"><br>
 		 	Description:<br>
-			<input type="text" name="title"><br>
+			<input type="text" name="Description"><br>
+		 	Rating:<br>
+			<input type="text" name="Rating"><br>
+		 	Length:<br>
+			<input type="text" name="Length"><br>
 		 	Release Year:<br>
-			<input type="text" name="title"><br>
-		 	Title:<br>
-			<input type="text" name="title"><br>
-		 	Title:<br>
-			<input type="text" name="title"><br>
-		 	Title:<br>
-			<input type="text" name="title"><br>
-		 	Title:<br>
-			<input type="text" name="title"><br>
+			<input type="text" name="ReleaseYear"><br>
+		 	Rental Rate:<br>
+			<input type="text" name="RentalRate"><br>
+		 	Replacement Cost:<br>
+			<input type="text" name="ReplacementCost"><br>
+		 	Special Features:<br>
+			<input type="text" name="SpecialFeatures"><br>
+			<select name="Language">
+				<option value="English">English</option>
+				<option value="Italian">Italian</option>
+				<option value="Japanese">Japanese</option>
+				<option value="Manderin">Manderin</option>
+				<option value="German">German</option>
+			</select>
 			
 			
-			<input type="submit">
+			<input type="submit" value="submit">
 		</form>
 		
 		<%-- <form:form action="add.do" method="POST" modelAttribute="film" >
-			<form:label path="Title">Title:</form:label>
-			<form:input path="Title" />
-			<form:errors path="Title" />
-			<br />
-			<form:label path="Description">Description</form:label>
-			<form:input path="Description" />
-			<form:errors path="Description" />
-			<br />
-			<form:label path="ReleaseYear">Release Year:</form:label>
-			<form:input path="ReleaseYear" />
-			<form:errors path="ReleaseYear" />
+			
 			<br />
 			<form:label path="Language">Language:</form:label>
 			<form:input path="Language" />
 			<form:errors path="Language" />
-			<br />
-			<form:label path="RentalRate">Rental Rate:</form:label>
-			<form:input path="RentalRate" />
-			<form:errors path="RentalRate" />
-			<br />
-			<form:label path="Length">Length:</form:label>
-			<form:input path="Length" />
-			<form:errors path="Length" />
-			<br />
-			<form:label path="ReplacementCost">Replacement Cost:</form:label>
-			<form:input path="ReplacementCost" />
-			<form:errors path="ReplacementCost" />
-			<br />
-			<form:label path="Rating">Rating:</form:label>
-			<form:input path="Rating" />
-			<form:errors path="Rating" />
 			<br />
 			<form:label path="SpecialFeatures">Special Features:</form:label>
 			<form:input path="SpecialFeatures" />
