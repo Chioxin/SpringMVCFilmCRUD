@@ -11,6 +11,16 @@
 </head>
 <body>
 
+	<div>
+	
+	<h2>Film: ${film.title}($film.releaseyear) (rated: ${film.rating})</h2>
+	<p>Language: ${film.language}</p>
+	<p>
+	<p>
+	
+	
+	</div>
+
 
 	<form action="inventory.do" method="POST">
 		<h2>This is a post form template. uses .do.</h2>

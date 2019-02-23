@@ -16,14 +16,14 @@
 	<p>
 		Please choose from the following options:<br> Search for a film
 		by<br>
-	<form action="MVCFilmSiteServlet.xml.do" method="GET">
+	<form action="search.do" method="GET">
 		<label for="search">Search by Film ID:</label> <input type="text"
-			name="search"> <input type="submit" value="submit">
+			name="filmId"> <input type="submit" value="submit">
 	</form>
 	<br>
-	<form action="MVCFilmSiteServlet.xml.do" method="GET">
+	<form action="search.do" method="GET">
 		<label for="search">Search by Keyword:</label> <input type="text"
-			name="search"> <input type="submit" value="submit">
+			name="keyWord"> <input type="submit" value="submit">
 	</form>
 	</p>
 
