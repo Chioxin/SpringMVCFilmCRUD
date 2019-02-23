@@ -33,7 +33,7 @@
 		<input type="submit" value="Add Film" />
 	</form>
 	
-	<a href="testDisplay.do">display.jsp</a>
+	<a href="testListDisplay.do">display.jsp</a>
 	<a href="testAdd.do">Film.jsp</a>
 </body>
 </html>
