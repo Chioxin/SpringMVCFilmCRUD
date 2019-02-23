@@ -22,13 +22,15 @@
 		<h3>Description</h3>
 		<blockquote>${film.description }</blockquote>
 		<h3>Special Features</h3>
-		<
-		<h3>Actors</h3>
-		<ul>
-			<c:forEach var="actor" items="${film.cast}">
-				<li>${actor.firstName}${actor.lastName}</li>
-			</c:forEach>
-		</ul>
+		
+		<div c:if test ="${not empty film.cast}">
+			<h3>Actors</h3>
+			<ul>
+				<c:forEach var="actor" items="${film.cast}">
+					<li>${actor.firstName}${actor.lastName}</li>
+				</c:forEach>
+			</ul>
+		</div>
 		</p>
 	</div>
 
@@ -70,10 +72,10 @@
 				<option value="German">German</option>
 			</select>
 			<br>
-			<input type="submit" value="Update" /> 
+			<input type="submit" value="Update" />
 		</form:form>
 		<form:form action="delete.do" method="POST" modelAttribute="film">
-			<input  type="submit" value="Delete" />
+			<input type="submit" value="Delete" />
 		</form:form>
 
 	</div>
