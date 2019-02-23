@@ -14,7 +14,7 @@ public class FilmQueryController {
 	@Autowired
 	private DatabaseAccessor filmDB;
 	
-	@RequestMapping(path="home", method=RequestMethod.GET)
+	@RequestMapping(path="/home", method=RequestMethod.GET)
 	public ModelAndView landingPage() {
 		ModelAndView mv = new ModelAndView("WEB-INF/Views/index.jsp");
 		

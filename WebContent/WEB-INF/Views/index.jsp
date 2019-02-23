@@ -12,6 +12,11 @@
 		<title>Film CRUD Home</title>
 	</head>
 	<body>
+	<form action="add.do" method="GET">
+		<input type="submit" value="Add Film"/>
+	</form>
+
+	
 		<h1>Welcome to the new and improved Film Database query!</h1>
 		<p>Please choose from the following options:<br>
 		Search for a film by<br>
