@@ -16,7 +16,7 @@ import com.skilldistillery.mvcfilmsite.data.DatabaseAccessor;
 public class FilmQueryController {
 
 	@Autowired
-	private DatabaseAccessor filmDB;
+	private DatabaseAccessor dao;
 
 	@RequestMapping(path = "home.do", method = RequestMethod.GET)
 	public ModelAndView landingPage() {
@@ -29,19 +29,20 @@ public class FilmQueryController {
 	@RequestMapping(path = "search.do", params="filmId", method = RequestMethod.GET)
 	public ModelAndView idSearch(@RequestParam(value = "filmId") int id) {
 		ModelAndView mv = new ModelAndView();
-		Film f = filmDB.findFilmById(id);
+		Film f = dao.findFilmById(id);
 		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/Views/display.jsp");
 		return mv;
 
 	}
 
-//	search by param keyWord
-	@RequestMapping(path = "search.do", method = RequestMethod.GET)
-	public ModelAndView keyWordSearch(@RequestParam(value = "keyWord") String keyWord) {
-		ModelAndView mv = new ModelAndView();
-		List<Film> f = filmDB.findFilmByKeyWord(keyWord);
-		mv.addObject("film", f);
-		return mv;
-	}
-//	@RequestMapping(path)
+////	search by param keyWord
+//	@RequestMapping(path = "search.do", method = RequestMethod.GET)
+//	public ModelAndView keyWordSearch(@RequestParam(value = "keyWord") String keyWord) {
+//		ModelAndView mv = new ModelAndView();
+//		List<Film> f = filmDB.findFilmByKeyWord(keyWord);
+//		mv.addObject("film", f);
+//		return mv;
+//	}
+////	@RequestMapping(path)
 }
