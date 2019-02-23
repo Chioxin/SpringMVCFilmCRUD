@@ -1,5 +1,6 @@
 package com.skilldistillery.mvcfilmsite.controllers.info;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,28 @@ public class FilmQueryController {
 
 	}
 
-////	search by param keyWord
-//	@RequestMapping(path = "search.do", method = RequestMethod.GET)
-//	public ModelAndView keyWordSearch(@RequestParam(value = "keyWord") String keyWord) {
-//		ModelAndView mv = new ModelAndView();
-//		List<Film> f = filmDB.findFilmByKeyWord(keyWord);
-//		mv.addObject("film", f);
-//		return mv;
-//	}
-////	@RequestMapping(path)
+//	search by param keyWord
+	@RequestMapping(path = "search.do", params="keyWord", method = RequestMethod.GET)
+	public ModelAndView keyWordSearch(@RequestParam(value = "keyWord") String keyWord) {
+		ModelAndView mv = new ModelAndView();
+		List<Film> f = dao.findFilmByKeyWord(keyWord);
+		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/Views/display.jsp");
+		return mv;
+	}
+//	do we need a seperate displayfilm when clicking links from keyword search?
+//	Add film from index
+	@RequestMapping(path ="add.do", method = RequestMethod.GET)
+	public ModelAndView addFilmForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/Views/addFilm.jsp");
+		return mv;
+	}
+	@RequestMapping(path ="add.do", method = RequestMethod.POST)
+	public ModelAndView addFilm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/Views/addFilm.jsp");
+		return mv;
+	}
+	
 }
