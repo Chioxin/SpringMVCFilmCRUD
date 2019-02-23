@@ -22,15 +22,6 @@
 			<form:label path="releaseYear">Release Year:</form:label>
 			<form:input path="releaseYear" />
 			<form:errors path="releaseYear" />
-			<br />
-			<form:label path="password">Password:</form:label>
-			<form:password path="password" />
-			<form:errors path="password" />
-			<br />
-			<form:label path="age">Age:</form:label>
-			<form:input path="age" />
-			<form:errors path="age" />
-			<input type="submit" value="Register" />
 		</form:form>
 	</body>
 </html>
