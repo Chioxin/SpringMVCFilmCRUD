@@ -11,16 +11,24 @@
 </head>
 <body>
 
-	<div>
-	<h2>${film.releaseYear}</h2>
+	<div id="displayFilm">
 	<h2>Film: ${film.title}(${film.releaseYear}) (rated:${film.rating})</h2>
-	<p>Language: ${film.language}</p>
+	<p>Length (${film.length}) Language: ${film.language}</p>
+	<p>Rental Rate: $${film.rentalRate} for ${film.rentalDuration} days</p>
 	<p></p>
 	<p>
 	<h3>Description</h3>
 	<blockquote>${film.description }</blockquote>
+	<h3>Actors</h3>
+	<ul>
+		<c:forEach var="actor" items="${film.cast}">
+			<li>${actor.firstName} ${actor.lastName}</li>
+		</c:forEach>
+	</ul>
 	</p>
+	</div>
 	
+	<div id="filmEditForm">
 	
 	</div>
 

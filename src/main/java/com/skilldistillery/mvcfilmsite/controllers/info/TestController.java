@@ -17,7 +17,7 @@ public class TestController {
 	
 	@RequestMapping(path="testDisplay.do", method=RequestMethod.GET)
 	public ModelAndView displayPage() {
-		Film testFilm = dao.findFilmById(1);
+		Film testFilm = dao.findFilmById(3);
 		
 		ModelAndView mv = new ModelAndView("WEB-INF/Views/display.jsp");
 		mv.addObject("film", testFilm);
