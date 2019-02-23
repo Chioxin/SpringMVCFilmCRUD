@@ -21,6 +21,8 @@
 		<p>
 		<h3>Description</h3>
 		<blockquote>${film.description }</blockquote>
+		<h3>Special Features</h3>
+		<
 		<h3>Actors</h3>
 		<ul>
 			<c:forEach var="actor" items="${film.cast}">
@@ -31,50 +33,49 @@
 	</div>
 
 	<div id="filmEditForm">
-		<form:form action="login.do" method="POST" modelAttribute="film">
+		<form:form action="update.do" method="POST" modelAttribute="film">
 			<form:label path="title">Title:</form:label>
 			<form:input path="title" />
 			<br />
-			<form:label path="releaseYear">Release Year:</form:label>
-			<form:input path="releaseYear" />
-			<br />
-			<form:label path="rentalDuration">Rental Duration:</form:label>
-			<form:input path="rentalDuration" />
-			<br />
-			<form:label path="rentalRate">Rental Rate:</form:label>
-			<form:input path="rentalRate" />
-			<br />
-			<form:label path="length">Length:</form:label>
-			<form:input path="length" />
-			<br />
-			<form:label path="replacementCost">Replacement Cost:</form:label>
-			<form:input path="replacementCost" />
+			<form:label path="description">Description:</form:label>
+			<form:input path="description" />
 			<br />
 			<form:label path="rating">Rating:</form:label>
 			<form:input path="rating" />
 			<br />
-			<form:label path="language">Language:</form:label>
-			<form:input path="language" />
+			<form:label path="length">Length:</form:label>
+			<form:input path="length" />
 			<br />
-			<form:label path="password">Password:</form:label>
-			<form:input path="password" />
+			<form:label path="releaseYear">Release Year:</form:label>
+			<form:input path="releaseYear" />
 			<br />
-			<form:label path="password">Password:</form:label>
-			<form:input path="password" />
+			<form:label path="rentalRate">Rental Rate:</form:label>
+			<form:input path="rentalRate" />
 			<br />
-			<input type="submit" value="Login" />
+			<form:label path="rentalDuration">Rental Duration:</form:label>
+			<form:input path="rentalDuration" />
+			<br />
+			<form:label path="replacementCost">Replacement Cost:</form:label>
+			<form:input path="replacementCost" />
+			<br />
+			<form:label path="specialFeatures">Special Features:</form:label>
+			<form:input path="specialFeatures" />
+			<br />
+			<form:label path="Language">Language: </form:label>
+			<select name="Language">
+				<option value="English">English</option>
+				<option value="Italian">Italian</option>
+				<option value="Japanese">Japanese</option>
+				<option value="Manderin">Manderin</option>
+				<option value="German">German</option>
+			</select>
+			<br>
+			<input type="submit" value="Update" /> 
+		</form:form>
+		<form:form action="delete.do" method="POST" modelAttribute="film">
+			<input  type="submit" value="Delete" />
 		</form:form>
 
-
 	</div>
-
-
-	<form action="inventory.do" method="POST">
-		<h2>This is a post form template. uses .do.</h2>
-		<label for="search">Search:</label> <input type="text" name="search">
-		<br> <label for="comments">Comments:</label> <input type="text"
-			name="comments"> <br> <input type="submit"
-			value="submit">
-	</form>
 </body>
 </html>
