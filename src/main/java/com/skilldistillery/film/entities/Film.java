@@ -137,8 +137,12 @@ public class Film {
 	}
 
 	public List<Actor> getCast() {
-		List<Actor> copy = new ArrayList<Actor>();
-		copy.addAll(cast);
+		List<Actor> copy = null;
+		
+		if (cast != null) {
+			copy = new ArrayList<Actor>();
+			copy.addAll(cast);
+		}
 		
 		return copy;
 	}

@@ -19,6 +19,8 @@ public class TestController {
 	public ModelAndView displayPage() {
 		Film testFilm = dao.findFilmById(3);
 		Film testFilm2 = new Film("Dumb Film", 2);
+		System.out.println(testFilm2.getCast());
+		
 		
 		ModelAndView mv = new ModelAndView("WEB-INF/Views/display.jsp");
 		mv.addObject("film", testFilm2);

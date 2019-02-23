@@ -22,8 +22,8 @@
 		<h3>Description</h3>
 		<blockquote>${film.description }</blockquote>
 		<h3>Special Features</h3>
-		
-		<div c:if test ="${not empty film.cast}">
+		<c:if test="${not empty film.cast}">
+		<div>
 			<h3>Actors</h3>
 			<ul>
 				<c:forEach var="actor" items="${film.cast}">
@@ -31,6 +31,7 @@
 				</c:forEach>
 			</ul>
 		</div>
+		</c:if>
 		</p>
 	</div>
 
