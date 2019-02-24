@@ -4,8 +4,11 @@ package com.skilldistillery.mvcfilmsite.controllers.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,25 +51,34 @@ public class FilmQueryController {
 		mv.setViewName("WEB-INF/Views/display.jsp");
 		return mv;
 	}
-//	do we need a seperate displayfilm when clicking links from keyword search?
 //	Add film from index
 	@RequestMapping(path ="add.do", method = RequestMethod.GET)
 	public ModelAndView addFilmForm() {
+		Film f = new Film();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/filmForm.jsp");
+		mv.addObject("film", f);
 		return mv;
 	}
 	@RequestMapping(path ="addFilm.do", method = RequestMethod.POST)
-	public ModelAndView addFilmToDB(Film f) {
+	public ModelAndView addFilmToDB(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+e.getErrorCount());
+		
+		if(e.hasErrors()) {
+			mv.setViewName("WEB-INF/Views/filmForm.jsp");
+		}else {
+			
 		dao.insertFilm(f);
 		mv.addObject("film", f);
 		mv.setViewName("WEB-INF/Views/display.jsp");
+		}
 		return mv;
 	}
 //		post delete
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteFilm(@RequestParam(value="filmId") int id) {
+		
 		dao.deleteFilm(dao.findFilmById(id));
 		
 		ModelAndView mv = new ModelAndView();
