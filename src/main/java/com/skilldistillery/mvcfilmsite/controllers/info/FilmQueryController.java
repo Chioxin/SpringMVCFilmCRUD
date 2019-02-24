@@ -89,7 +89,7 @@ public class FilmQueryController {
 
 //	update button controller
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
-	public ModelAndView updateFilm(@Valid @RequestParam(value="film") Film f, Errors e) {
+	public ModelAndView updateFilm(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
 
 		if (e.hasErrors()) {
