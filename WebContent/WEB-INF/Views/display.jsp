@@ -11,15 +11,15 @@
 </head>
 <body>
 	<c:if test="${not empty filmList}">
-	<div id="displayListofFilms">
-		<h3>List of Films matching your Query</h3>
-		<ul>
-			<c:forEach var="aFilm" items="${filmList}">
-				<li><a href="testDisplay.do">${aFilm.title}</a></li>
-			</c:forEach>
-		</ul>
-	
-	</div>
+		<div id="displayListofFilms">
+			<h3>List of Films matching your Query</h3>
+			<ul>
+				<c:forEach var="aFilm" items="${filmList}">
+					<li><a href="search.do?filmId=<c:out value="${aFilm.id}"/>">${aFilm.title}</a></li>
+				</c:forEach>
+			</ul>
+
+		</div>
 	</c:if>
 
 
@@ -89,9 +89,9 @@
 				<br>
 				<input type="submit" value="Update" />
 			</form:form>
-			<form:form action="delete.do" method="POST" modelAttribute="film"> 
-				<input type="hidden" name="filmId" value="${film.id }" readonly/>
-				<input type="submit" value="Would you like to delete this film?"/>
+			<form:form action="delete.do" method="POST" modelAttribute="film">
+				<input name="filmId" value=${film.id } />
+				<input type="submit" value="Delete" />
 			</form:form>
 
 		</div>
