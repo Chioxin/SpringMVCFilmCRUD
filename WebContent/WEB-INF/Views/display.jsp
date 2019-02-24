@@ -98,6 +98,7 @@
 					<option value="6">German</option>
 				</form:select>
 				<br>
+				<input type="hidden" name="id" value="${film.id }"/>
 				<input type="submit" value="Update" />
 			</form:form>
 			<form:form action="delete.do" method="POST" modelAttribute="film">
