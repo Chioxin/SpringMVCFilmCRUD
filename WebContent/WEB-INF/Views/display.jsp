@@ -90,7 +90,8 @@
 				<input type="submit" value="Update" />
 			</form:form>
 			<form:form action="delete.do" method="POST" modelAttribute="film">
-				<input name="filmId" type="submit" value="Delete"/>
+				<input name="filmId" value=${film.id }/>
+				<input type="submit" value="Delete"/>
 			</form:form>
 
 		</div>
