@@ -1,6 +1,5 @@
 package com.skilldistillery.mvcfilmsite.controllers.info;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class FilmQueryController {
 	}
 
 //	map request for a search by filmId. 
-	@RequestMapping(path = "search.do", params="filmId", method = RequestMethod.GET)
+	@RequestMapping(path = "search.do", params = "filmId", method = RequestMethod.GET)
 	public ModelAndView idSearch(@RequestParam(value = "filmId") int id) {
 		ModelAndView mv = new ModelAndView();
 		Film f = dao.findFilmById(id);
@@ -42,17 +41,18 @@ public class FilmQueryController {
 	}
 
 //	search by param keyWord
-	@RequestMapping(path = "search.do", params="keyWord", method = RequestMethod.GET)
+	@RequestMapping(path = "search.do", params = "keyWord", method = RequestMethod.GET)
 	public ModelAndView keyWordSearch(@RequestParam(value = "keyWord") String keyWord) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		List<Film> films = new ArrayList<Film>(dao.findFilmByKeyWord(keyWord));
 		mv.addObject("filmList", films);
 		mv.setViewName("WEB-INF/Views/display.jsp");
 		return mv;
 	}
+
 //	Add film from index
-	@RequestMapping(path ="add.do", method = RequestMethod.GET)
+	@RequestMapping(path = "add.do", method = RequestMethod.GET)
 	public ModelAndView addFilmForm() {
 		Film f = new Film();
 		ModelAndView mv = new ModelAndView();
@@ -60,31 +60,40 @@ public class FilmQueryController {
 		mv.addObject("film", f);
 		return mv;
 	}
-	@RequestMapping(path ="addFilm.do", method = RequestMethod.POST)
+
+	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilmToDB(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+e.getErrorCount());
-		
-		if(e.hasErrors()) {
+//		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + e.getErrorCount());
+		if (e.hasErrors()) {
 			mv.setViewName("WEB-INF/Views/filmForm.jsp");
-		}else {
-			
-		dao.insertFilm(f);
-		mv.addObject("film", f);
-		mv.setViewName("WEB-INF/Views/display.jsp");
+		} else {
+
+			dao.insertFilm(f);
+			mv.addObject("film", f);
+			mv.setViewName("WEB-INF/Views/display.jsp");
 		}
 		return mv;
 	}
+
 //		post delete
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
-	public ModelAndView deleteFilm(@RequestParam(value="filmId") int id) {
-		
+	public ModelAndView deleteFilm(@RequestParam(value = "filmId") int id) {
+
 		dao.deleteFilm(dao.findFilmById(id));
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/index.jsp");
 		return mv;
 	}
-	
+//	update button controller
+	@RequestMapping(path="update.do", method=RequestMethod.POST)
+	public ModelAndView updateFiilm() {
+		ModelAndView mv = new ModelAndView();
+		dao.updateFilm(f);
 		
+		
+		return null;
 	}
+
+}
