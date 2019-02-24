@@ -113,13 +113,17 @@ public class FilmQueryController {
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/Views/display.jsp");
 
 		if (e.hasErrors()) {
 			mv.setViewName("WEB-INF/Views/display.jsp");
 		} else {
-			dao.updateFilm(f);
-			mv.addObject("film", f);
-			mv.setViewName("WEB-INF/Views/display.jsp");
+			try {
+				dao.updateFilm(f);
+			} catch (SQLException e1) {
+				mv.addObject("updateFailure", true);
+			}
 		}
 		return mv;
 	}

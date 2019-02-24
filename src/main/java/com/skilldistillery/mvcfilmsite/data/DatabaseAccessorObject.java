@@ -282,7 +282,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film updateFilm(Film modifiedFilm) {
+	public Film updateFilm(Film modifiedFilm) throws SQLException {
 		Film originalFilm = null;
 
 		try {
@@ -312,16 +312,13 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 			} catch (SQLException e1) {
 				e1.printStackTrace();
+				throw e;
 			}
 		} finally {
-			try {
 				conn.commit();
 				conn.close();
 				statement.close();
-			} catch (SQLException e) {
-				System.err.println("Something went wrong closing database connections in updateFilm");
-				e.printStackTrace();
-			}
+//				System.err.println("Something went wrong closing database connections in updateFilm");
 		}
 
 		return null;

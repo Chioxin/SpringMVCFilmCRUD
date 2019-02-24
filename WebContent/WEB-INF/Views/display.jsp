@@ -25,7 +25,10 @@
 
 	<c:if test="${not empty film}">
 		<div id="displayFilm">
-		<c:if test="${not empty filmNotDeleted }">
+			<c:if test="${not empty filmNotDeleted }">
+				<h2>Delete of film ${film.title }failed!</h2>
+			</c:if>
+			<c:if test="${not empty updateFailure }">
 				<h2>Delete of film ${film.title }failed!</h2>
 			</c:if>
 			<h2>Film: ${film.title}(${film.releaseYear})
@@ -53,7 +56,7 @@
 		</div>
 
 		<div id="filmEditForm">
-			
+
 			<form:form action="update.do" method="POST" modelAttribute="film">
 				<form:label path="title">Title:</form:label>
 				<form:input path="title" />
@@ -92,7 +95,7 @@
 				<form:errors path="specialFeatures" />
 				<br /> --%>
 				<form:label path="languageId">Language: </form:label>
-				<form:input path="languageId"/>
+				<form:input path="languageId" />
 				<form:select path="languageId" name="languageId">
 					<option value="1">English</option>
 					<option value="2">Italian</option>
@@ -102,11 +105,11 @@
 					<option value="6">German</option>
 				</form:select>
 				<br>
-				<input type="hidden" name="id" value="${film.id }"/>
+				<input type="hidden" name="id" value="${film.id }" />
 				<input type="submit" value="Update" />
 			</form:form>
 			<form:form action="delete.do" method="POST" modelAttribute="film">
-			
+
 				<input name="filmId" type="hidden" value=${film.id } />
 				<input type="submit" value="Would you like to delete this film?" />
 			</form:form>

@@ -13,5 +13,5 @@ public interface DatabaseAccessor {
   public List<Film> findFilmByKeyWord(String key);
   public Film insertFilm(Film inputFilm);
   public void deleteFilm(Film deleteFilm) throws SQLException;
-  public Film updateFilm(Film modifiedFilm);
+  public Film updateFilm(Film modifiedFilm)throws SQLException;
 }
