@@ -192,7 +192,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film myFilm = null;
 
 		if (inputFilm != null) {
-			String query = "INSERT INTO film (title, language_id)" + " VALUES (?,?)";
+			String query = "INSERT INTO film (title, description, language_id)" + " VALUES (?,?,?)";
 
 			Connection conn = null;
 			PreparedStatement statement = null;
@@ -202,7 +202,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				conn.setAutoCommit(false);
 
 				statement.setString(1, inputFilm.getTitle());
-				statement.setInt(2, inputFilm.getLanguageId());
+				statement.setString(2, inputFilm.getDescription());
+				statement.setInt(3, inputFilm.getLanguageId());
 				int numChanges = statement.executeUpdate();
 
 				if (numChanges == 1) {
@@ -279,7 +280,133 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	@Override
 	public Film updateFilm(Film modifiedFilm) {
+		Film originalFilm = findFilmById(modifiedFilm.getId());
+		StringBuilder query = buildSetClause(originalFilm, modifiedFilm);
+		query.append(" WHERE id = " + originalFilm.getId());
+
+		Connection conn = null;
+		PreparedStatement statement = null;
+		try {
+			conn = DriverManager.getConnection(URL, USER, PASSWORD);
+			statement = conn.prepareStatement(query.toString());
+			conn.setAutoCommit(false);
+			System.out.println(statement);
+
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			System.err.println("Something went wrong in updateFilm method attempting an update.");
+			e.printStackTrace();
+			try {
+				conn.rollback();
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+				statement.close();
+			} catch (SQLException e) {
+				System.err.println("Something went wrong closing database connections in updateFilm");
+				e.printStackTrace();
+			}
+		}
+
 		return null;
+	}
+
+	private StringBuilder buildSetClause(Film oFilm, Film mFilm) {
+		StringBuilder set = new StringBuilder("UPDATE film SET ");
+		boolean doNotAddComma = true;
+
+		if ((mFilm.getTitle() != null && !mFilm.getTitle().equals(""))&& !mFilm.getTitle().equals(oFilm.getTitle())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			}
+			set.append("title = \"" + mFilm.getTitle() + "\"");
+		}
+//		if (mFilm.getTitle() != null && !mFilm.getTitle().equals(oFilm.getTitle())) {
+//			if (doNotAddComma) {
+//				doNotAddComma = false;
+//			}
+//			set.append("title = \"" + mFilm.getTitle() + "\"");
+//		}
+
+		if ((mFilm.getDescription() != null && !mFilm.getDescription().equals("")) && !mFilm.getDescription().equals(oFilm.getDescription())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("description = \"" +mFilm.getDescription() + "\"");
+		}
+		if ((mFilm.getReleaseYear() != null && !mFilm.getReleaseYear().equals("")) && !mFilm.getReleaseYear().equals(oFilm.getReleaseYear())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("release_year = \"" + mFilm.getReleaseYear() + "\"");
+		}
+		if (mFilm.getLanguageId() != oFilm.getLanguageId()) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("language_id = " + mFilm.getLanguageId());
+		}
+		if (mFilm.getRentalDuration() != oFilm.getRentalDuration()) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("rental_duration = " + mFilm.getRentalDuration());
+		}
+		if (mFilm.getRentalRate() != (oFilm.getRentalRate())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("rental_rate = " + mFilm.getRentalRate());
+		}
+		if (mFilm.getLength() != (oFilm.getLength())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("length = " + mFilm.getLength());
+		}
+		if (mFilm.getReplacementCost() != oFilm.getReplacementCost()) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("replacement_cost = " + mFilm.getReplacementCost());
+		}
+		if ((mFilm.getSpecialFeatures() != null && !mFilm.getSpecialFeatures().equals(""))&& !mFilm.getSpecialFeatures().equals(oFilm.getSpecialFeatures())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("special_features = \"" + mFilm.getSpecialFeatures() + "\"");
+		}
+		if ((mFilm.getRating() != null && !mFilm.getRating().equals("")) && !mFilm.getRating().equals(oFilm.getRating())) {
+			if (doNotAddComma) {
+				doNotAddComma = false;
+			} else {
+				set.append(", ");
+			}
+			set.append("rating = \"" + mFilm.getRating() + "\"");
+		}
+		return set;
 	}
 
 }
