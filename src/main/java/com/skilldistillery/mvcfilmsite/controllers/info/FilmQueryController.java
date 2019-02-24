@@ -62,6 +62,14 @@ public class FilmQueryController {
 		mv.setViewName("WEB-INF/Views/display.jsp");
 		return mv;
 	}
-//	add a language to language ID method. 
-	
-}
+//		post delete
+	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(@RequestParam(value="filmId") int id) {
+		dao.deleteFilm(dao.findFilmById(id));
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/Views/index.jsp");
+		return mv;
+	}
+		
+	}

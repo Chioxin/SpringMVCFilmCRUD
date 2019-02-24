@@ -19,7 +19,7 @@
 		 	Rating:<br>
 			<!-- <input type="text" name="Rating"><br>
 		 	Length:<br> -->
-			<input type="text" name="Length"><br>
+			<!-- <input type="text" name="Length"><br>
 		 	Release Year:<br>
 			<input type="text" name="ReleaseYear"><br>
 		 	Rental Rate:<br>
@@ -29,7 +29,7 @@
 		 	Replacement Cost:<br>
 			<input type="text" name="ReplacementCost"><br>
 		 	Special Features:<br>
-			<input type="text" name="SpecialFeatures"><br>
+			< input type="text" name="SpecialFeatures"><br>-->
 			Language<br>
 			<select name="LanguageId">
 				<option value="1">English</option>
