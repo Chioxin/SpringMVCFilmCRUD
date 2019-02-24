@@ -19,8 +19,11 @@ public class Film {
 	@Max(6)
 	private int languageId;
 	private int rentalDuration;
+	@Min(0)
 	private double rentalRate;
+	@Min(0)
 	private int length;
+	@Min(0)
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
@@ -44,7 +47,7 @@ public class Film {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.releaseYear = releaseYear;
+		this.releaseYear = releaseYear.substring(0, 4); // We just want the year
 		this.languageId = languageId;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;

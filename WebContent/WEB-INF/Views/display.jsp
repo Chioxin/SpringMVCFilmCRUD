@@ -77,7 +77,7 @@
 				<form:errors path="description" />
 				<br />
 				<form:label path="rating">Rating:</form:label>
-				<form:select path="languageId" name="languageId">
+				<form:select path="rating" name="languageId">
 					<option value="G">G</option>
 					<option value="PG">PG</option>
 					<option value="PG13">PG-13</option>
