@@ -33,9 +33,17 @@ public class FilmQueryController {
 	@RequestMapping(path = "search.do", params = "filmId", method = RequestMethod.GET)
 	public ModelAndView idSearch(@RequestParam(value = "filmId") int id) {
 		ModelAndView mv = new ModelAndView();
-		Film f = dao.findFilmById(id);
-		mv.addObject("film", f);
-		mv.setViewName("WEB-INF/Views/display.jsp");
+		Film f = null;
+		boolean searchSuccess = true;
+		try {
+			f = dao.findFilmById(id);
+			mv.addObject("film", f);
+			mv.setViewName("WEB-INF/Views/display.jsp");
+		} catch (Throwable e) {
+			mv.setViewName("WEB-INF/Views/indexFailedSearch.jsp");
+			searchSuccess=false;
+			mv.addObject("searchSuccess", searchSuccess);
+		}
 		return mv;
 
 	}
@@ -80,7 +88,12 @@ public class FilmQueryController {
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteFilm(@RequestParam(value = "filmId") int id) {
 
-		dao.deleteFilm(dao.findFilmById(id));
+		try {
+			dao.deleteFilm(dao.findFilmById(id));
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/index.jsp");

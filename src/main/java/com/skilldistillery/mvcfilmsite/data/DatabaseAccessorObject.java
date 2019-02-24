@@ -26,10 +26,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film findFilmById(int filmId) {
+	public Film findFilmById(int filmId) throws Throwable {
 
 		Film myFilm = null;
 		String query = "SELECT * FROM film WHERE id = ?";
+		Boolean returnedResult = true;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement statement = conn.prepareStatement(query);) {
@@ -41,6 +42,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				myFilm = createFilm(rs);
 			} else {
 				System.out.println("Could not find a film with ID(" + filmId + ").");
+				returnedResult = false;
+				Throwable e = new Throwable();
+				throw e;
+
 			}
 
 		} catch (SQLException e) {
@@ -280,7 +285,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	@Override
 	public Film updateFilm(Film modifiedFilm) {
-		Film originalFilm = findFilmById(modifiedFilm.getId());
+		Film originalFilm = null;
+
+		try {
+			originalFilm = findFilmById(modifiedFilm.getId());
+		} catch (Throwable e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		StringBuilder query = buildSetClause(originalFilm, modifiedFilm);
 		query.append(" WHERE id = " + originalFilm.getId());
 
@@ -321,7 +333,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		StringBuilder set = new StringBuilder("UPDATE film SET ");
 		boolean doNotAddComma = true;
 
-		if ((mFilm.getTitle() != null && !mFilm.getTitle().equals(""))&& !mFilm.getTitle().equals(oFilm.getTitle())) {
+		if ((mFilm.getTitle() != null && !mFilm.getTitle().equals("")) && !mFilm.getTitle().equals(oFilm.getTitle())) {
 			if (doNotAddComma) {
 				doNotAddComma = false;
 			}
@@ -334,15 +346,17 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 //			set.append("title = \"" + mFilm.getTitle() + "\"");
 //		}
 
-		if ((mFilm.getDescription() != null && !mFilm.getDescription().equals("")) && !mFilm.getDescription().equals(oFilm.getDescription())) {
+		if ((mFilm.getDescription() != null && !mFilm.getDescription().equals(""))
+				&& !mFilm.getDescription().equals(oFilm.getDescription())) {
 			if (doNotAddComma) {
 				doNotAddComma = false;
 			} else {
 				set.append(", ");
 			}
-			set.append("description = \"" +mFilm.getDescription() + "\"");
+			set.append("description = \"" + mFilm.getDescription() + "\"");
 		}
-		if ((mFilm.getReleaseYear() != null && !mFilm.getReleaseYear().equals("")) && !mFilm.getReleaseYear().equals(oFilm.getReleaseYear())) {
+		if ((mFilm.getReleaseYear() != null && !mFilm.getReleaseYear().equals(""))
+				&& !mFilm.getReleaseYear().equals(oFilm.getReleaseYear())) {
 			if (doNotAddComma) {
 				doNotAddComma = false;
 			} else {
@@ -399,7 +413,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 //			}
 //			set.append("special_features = \"" + mFilm.getSpecialFeatures() + "\"");
 //		}
-		if ((mFilm.getRating() != null && !mFilm.getRating().equals("")) && !mFilm.getRating().equals(oFilm.getRating())) {
+		if ((mFilm.getRating() != null && !mFilm.getRating().equals(""))
+				&& !mFilm.getRating().equals(oFilm.getRating())) {
 			if (doNotAddComma) {
 				doNotAddComma = false;
 			} else {
@@ -409,5 +424,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return set;
 	}
+
+//	custom exceptions
 
 }

@@ -20,7 +20,12 @@ public class TestController {
 	
 	@RequestMapping(path="testDisplay.do", method=RequestMethod.GET)
 	public ModelAndView displayPage() {
-		Film testFilm = dao.findFilmById(3);
+		try {
+			Film testFilm = dao.findFilmById(3);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Film testFilm2 = new Film("Dumb Film", 2);
 		System.out.println(testFilm2.getCast());
 		
