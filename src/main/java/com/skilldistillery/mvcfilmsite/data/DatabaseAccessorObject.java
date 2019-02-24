@@ -344,7 +344,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				conn.commit();
 				conn.close();
 				statement.close();
-//				System.err.println("Something went wrong closing database connections in updateFilm");
 		}
 
 		return null;
