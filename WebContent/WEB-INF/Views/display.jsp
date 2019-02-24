@@ -33,7 +33,13 @@
 			</c:if>
 			<h2>Film: ${film.title}(${film.releaseYear})
 				(rated:${film.rating})</h2>
-			<p>Length (${film.length} minutes) Language: ${film.language}</p>
+			<p>
+			<c:if test="${not empty film.category }">
+			Category: ${film.category}
+			</c:if>
+			
+			Length (${film.length} minutes) Language: ${film.language}
+			</p>
 			<p>Rental Rate: $${film.rentalRate} for ${film.rentalDuration}
 				days</p>
 			<p></p>

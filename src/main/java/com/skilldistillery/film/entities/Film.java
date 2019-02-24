@@ -8,11 +8,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class Film {	
+public class Film {
 	private int id;
-	@Size(min=2)
+	@Size(min = 2)
 	private String title;
-	@Size(min=1)
+	@Size(min = 1)
 	private String description;
 	private String releaseYear;
 	@Min(1)
@@ -26,15 +26,20 @@ public class Film {
 	private String specialFeatures;
 	private List<Actor> cast;
 	private String language;
+	private String category;
 
 	// Constructors
+	public Film() {
+	}
+
 	public Film(String title, int languageId) {
 		this.title = title;
 		this.languageId = languageId;
 	}
-	
+
 	public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeatures, List<Actor> cast, String language) {
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
+			List<Actor> cast, String language, String category) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -49,10 +54,7 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 		this.cast = cast;
 		this.language = language;
-		
-	}
-
-	public Film() {
+		this.category = category;
 	}
 
 	// Getters and Setters
@@ -147,20 +149,18 @@ public class Film {
 
 	public List<Actor> getCast() {
 		List<Actor> copy = null;
-		
+
 		if (cast != null) {
 			copy = new ArrayList<Actor>();
 			copy.addAll(cast);
 		}
-		
+
 		return copy;
 	}
 
 	public void setCast(List<Actor> cast) {
 		this.cast = cast;
 	}
-	
-	
 
 	public String getLanguage() {
 		return language;
@@ -170,19 +170,29 @@ public class Film {
 		this.language = language;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + ", cast=" + cast + ", language=" + language + "]";
+				+ ", specialFeatures=" + specialFeatures + ", cast=" + cast + ", language=" + language + ", category="
+				+ category + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cast == null) ? 0 : cast.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((language == null) ? 0 : language.hashCode());
@@ -214,6 +224,11 @@ public class Film {
 			if (other.cast != null)
 				return false;
 		} else if (!cast.equals(other.cast))
+			return false;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
 			return false;
 		if (description == null) {
 			if (other.description != null)

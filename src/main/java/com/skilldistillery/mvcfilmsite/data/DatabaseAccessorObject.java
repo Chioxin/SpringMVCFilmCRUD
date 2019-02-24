@@ -72,8 +72,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String specialFeatures = rs.getString("film.special_features");
 		List<Actor> cast = findActorsByFilmId(id);
 		String language = findLanguagesByFilmId(id);
+		String category = findCategoriesByFilmId(id);
 		myFilm = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
-				replacementCost, rating, specialFeatures, cast, language);
+				replacementCost, rating, specialFeatures, cast, language, category);
 
 		return myFilm;
 	}
@@ -155,6 +156,31 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 
 		return myList;
+	}
+	@Override
+	public String findCategoriesByFilmId(int filmId) {
+		String myCategory = null;
+		String query = "SELECT film.title, category.name " + 
+				"FROM film JOIN film_category filmc ON film.id = filmc.film_id " + 
+				"JOIN category ON filmc.category_id = category.id " + 
+				"WHERE film.id = ?";
+		
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+				PreparedStatement statement = conn.prepareStatement(query);) {
+			
+			statement.setInt(1, filmId);
+			ResultSet rs = statement.executeQuery();
+			
+			while (rs.next()) {
+				myCategory = rs.getString("category.name");
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("Something went wrong in findActorByFilm method.");
+			e.printStackTrace();
+		}
+		
+		return myCategory;
 	}
 
 	private Actor createActor(ResultSet rs) throws SQLException {
