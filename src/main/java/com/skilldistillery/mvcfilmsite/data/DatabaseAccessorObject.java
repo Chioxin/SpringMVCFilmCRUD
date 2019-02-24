@@ -277,4 +277,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 	}
 
+	@Override
+	public Film updateFilm(Film modifiedFilm) {
+		return null;
+	}
+
 }
