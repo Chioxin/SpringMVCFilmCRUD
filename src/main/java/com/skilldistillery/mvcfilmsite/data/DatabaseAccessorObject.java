@@ -26,28 +26,21 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film findFilmById(int filmId) throws Throwable {
+	public Film findFilmById(int filmId) {
 
 		Film myFilm = null;
 		String query = "SELECT * FROM film WHERE id = ?";
-		Boolean returnedResult = true;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement statement = conn.prepareStatement(query);) {
 
 			statement.setInt(1, filmId);
 			ResultSet rs = statement.executeQuery();
-
 			if (rs.next()) {
 				myFilm = createFilm(rs);
 			} else {
 				System.out.println("Could not find a film with ID(" + filmId + ").");
-				returnedResult = false;
-				Throwable e = new Throwable();
-				throw e;
-
 			}
-
 		} catch (SQLException e) {
 			System.err.println("Something went wrong in findFilmByID method.");
 			e.printStackTrace();
@@ -75,6 +68,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String category = findCategoriesByFilmId(id);
 		myFilm = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 				replacementCost, rating, specialFeatures, cast, language, category);
+		System.out.println("DAO::AFTER CONSTRUCTOR");
 
 		return myFilm;
 	}
@@ -157,29 +151,29 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		return myList;
 	}
+
 	@Override
 	public String findCategoriesByFilmId(int filmId) {
 		String myCategory = null;
-		String query = "SELECT film.title, category.name " + 
-				"FROM film JOIN film_category filmc ON film.id = filmc.film_id " + 
-				"JOIN category ON filmc.category_id = category.id " + 
-				"WHERE film.id = ?";
-		
+		String query = "SELECT film.title, category.name "
+				+ "FROM film JOIN film_category filmc ON film.id = filmc.film_id "
+				+ "JOIN category ON filmc.category_id = category.id " + "WHERE film.id = ?";
+
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement statement = conn.prepareStatement(query);) {
-			
+
 			statement.setInt(1, filmId);
 			ResultSet rs = statement.executeQuery();
-			
+
 			while (rs.next()) {
 				myCategory = rs.getString("category.name");
 			}
-			
+
 		} catch (SQLException e) {
 			System.err.println("Something went wrong in findActorByFilm method.");
 			e.printStackTrace();
 		}
-		
+
 		return myCategory;
 	}
 
@@ -269,8 +263,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return myFilm;
 	}
 
-	@SuppressWarnings("finally")
-	public void deleteFilm(Film deleteFilm) throws SQLException {
+	public boolean deleteFilm(Film deleteFilm) {
 		if (deleteFilm != null) {
 
 			String query = "DELETE FROM film WHERE id = ?";
@@ -290,9 +283,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			} catch (SQLException e) {
 				System.err.println("Something went wrong in deleteFilm method attempting a delete.");
 				e.printStackTrace();
+				try {
 					conn.rollback();
-					throw e;
-
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			} finally {
 				try {
 					conn.commit();
@@ -304,19 +299,19 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				}
 			}
 
+			return true;
+
+		} else {
+			return false;
 		}
 	}
 
 	@Override
-	public Film updateFilm(Film modifiedFilm) throws SQLException {
+	public boolean updateFilm(Film modifiedFilm) {
 		Film originalFilm = null;
+		boolean updateSuccess = false;
 
-		try {
-			originalFilm = findFilmById(modifiedFilm.getId());
-		} catch (Throwable e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		originalFilm = findFilmById(modifiedFilm.getId());
 		StringBuilder query = buildSetClause(originalFilm, modifiedFilm);
 		query.append(" WHERE id = " + originalFilm.getId());
 
@@ -327,8 +322,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			statement = conn.prepareStatement(query.toString());
 			conn.setAutoCommit(false);
 			System.out.println(statement);
-
 			statement.executeUpdate();
+			updateSuccess = true;
 
 		} catch (SQLException e) {
 			System.err.println("Something went wrong in updateFilm method attempting an update.");
@@ -338,15 +333,18 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 			} catch (SQLException e1) {
 				e1.printStackTrace();
-				throw e;
 			}
 		} finally {
+			try {
 				conn.commit();
 				conn.close();
 				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
-		return null;
+		return updateSuccess;
 	}
 
 	private StringBuilder buildSetClause(Film oFilm, Film mFilm) {

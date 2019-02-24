@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class Film {
@@ -19,11 +18,8 @@ public class Film {
 	@Max(6)
 	private int languageId;
 	private int rentalDuration;
-	@Min(0)
 	private double rentalRate;
-	@Min(0)
 	private int length;
-	@Min(0)
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
@@ -40,14 +36,16 @@ public class Film {
 		this.languageId = languageId;
 	}
 
-	public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
+	
+	
+public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 			List<Actor> cast, String language, String category) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.releaseYear = releaseYear.substring(0, 4); // We just want the year
+		this.releaseYear = releaseYear;
 		this.languageId = languageId;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;

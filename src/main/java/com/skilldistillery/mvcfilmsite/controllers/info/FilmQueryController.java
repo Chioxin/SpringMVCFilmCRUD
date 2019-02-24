@@ -1,6 +1,5 @@
 package com.skilldistillery.mvcfilmsite.controllers.info;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,17 +35,16 @@ public class FilmQueryController {
 		ModelAndView mv = new ModelAndView();
 		Film f = null;
 		String failedSearch = "";
-		try {
-			f = dao.findFilmById(id);
+		f = dao.findFilmById(id);
+		if (f != null) {
 			mv.addObject("film", f);
 			mv.setViewName("WEB-INF/Views/display.jsp");
-		} catch (Throwable e) {
+		} else {
 			mv.setViewName("WEB-INF/Views/index.jsp");
-			
-			failedSearch=""+id;
+			failedSearch = "" + id;
 			mv.addObject("failedSearch", failedSearch);
 		}
-		return mv;
+	return mv;
 
 	}
 
@@ -78,7 +76,6 @@ public class FilmQueryController {
 		if (e.hasErrors()) {
 			mv.setViewName("WEB-INF/Views/filmForm.jsp");
 		} else {
-
 			dao.insertFilm(f);
 			mv.addObject("film", f);
 			mv.setViewName("WEB-INF/Views/display.jsp");
@@ -90,26 +87,21 @@ public class FilmQueryController {
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteFilm(@RequestParam(value = "filmId") int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/Views/index.jsp");
+		Film filmToDelete = dao.findFilmById(id);
 
-			try {
-				dao.deleteFilm(dao.findFilmById(id));
-			} catch (SQLException e) {
-				System.out.println("this followed the error path!!!!!!!!!!!!!!!");
-				mv.setViewName("WEB-INF/Views/display.jsp");
-				mv.addObject("filmNotDeleted", id);
-				try {
-					mv.addObject("film", dao.findFilmById(id));
-				} catch (Throwable e1) {
-				}
-			} catch (Throwable e) {
-			}
-			
+		if (dao.deleteFilm(filmToDelete)) {
+			mv.setViewName("WEB-INF/Views/index.jsp");
+		} else {
+			mv.setViewName("WEB-INF/Views/display.jsp");
+			mv.addObject("filmNotDeleted", id);
+			mv.addObject("film", filmToDelete);
+		}
+		
 		System.out.println(mv.getViewName());
 		return mv;
 	}
 
-//	update button controller
+//		update button controller
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
@@ -119,9 +111,7 @@ public class FilmQueryController {
 		if (e.hasErrors()) {
 			mv.setViewName("WEB-INF/Views/display.jsp");
 		} else {
-			try {
-				dao.updateFilm(f);
-			} catch (SQLException e1) {
+			if (!dao.updateFilm(f)) {
 				mv.addObject("updateFailure", true);
 			}
 		}
