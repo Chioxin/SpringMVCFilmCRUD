@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Display Film</title>
+<title>Film Display</title>
 </head>
 <body>
 	<c:if test="${not empty filmList}">
@@ -26,14 +26,14 @@
 	<c:if test="${not empty film}">
 		<div id="displayFilm">
 			<c:if test="${not empty filmNotDeleted }">
-				<h2>Delete of film ${film.title }failed!</h2>
+				<h2>Delete of film ${film.title } failed!</h2>
 			</c:if>
 			<c:if test="${not empty updateFailure }">
-				<h2>Delete of film ${film.title }failed!</h2>
+				<h2>Delete of film ${film.title } failed!</h2>
 			</c:if>
 			<h2>Film: ${film.title}(${film.releaseYear})
 				(rated:${film.rating})</h2>
-			<p>Length (${film.length}) Language: ${film.language}</p>
+			<p>Length (${film.length} minutes) Language: ${film.language}</p>
 			<p>Rental Rate: $${film.rentalRate} for ${film.rentalDuration}
 				days</p>
 			<p></p>

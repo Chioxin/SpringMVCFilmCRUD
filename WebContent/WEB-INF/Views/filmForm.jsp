@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-		<title>Add Film form:</title>
+		<title>Film Form</title>
 	</head>
 	<body>
 	

@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Film CRUD Home</title>
+<title>Film Query</title>
 </head>
 <body>
 	<h1>Welcome to the new and improved Film Database query!</h1>
@@ -36,7 +36,5 @@
 		<input type="submit" value="Add Film" />
 	</form>
 	
-	<a href="testListDisplay.do">display.jsp</a>
-	<a href="testAdd.do">Film.jsp</a>
 </body>
 </html>

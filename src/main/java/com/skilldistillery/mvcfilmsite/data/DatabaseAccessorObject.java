@@ -334,12 +334,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			}
 			set.append("title = \"" + mFilm.getTitle() + "\"");
 		}
-//		if (mFilm.getTitle() != null && !mFilm.getTitle().equals(oFilm.getTitle())) {
-//			if (doNotAddComma) {
-//				doNotAddComma = false;
-//			}
-//			set.append("title = \"" + mFilm.getTitle() + "\"");
-//		}
 
 		if ((mFilm.getDescription() != null && !mFilm.getDescription().equals(""))
 				&& !mFilm.getDescription().equals(oFilm.getDescription())) {
