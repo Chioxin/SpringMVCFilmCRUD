@@ -86,13 +86,19 @@ public class FilmQueryController {
 		mv.setViewName("WEB-INF/Views/index.jsp");
 		return mv;
 	}
+
 //	update button controller
-	@RequestMapping(path="update.do", method=RequestMethod.POST)
-	public ModelAndView updateFilm(@RequestParam(value="film")Film f) {
+	@RequestMapping(path = "update.do", method = RequestMethod.POST)
+	public ModelAndView updateFilm(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
-		dao.updateFilm(f);
-		mv.addObject("film", f);
-		mv.setViewName("WEB-INF/Views/display.jsp");
+
+		if (e.hasErrors()) {
+			mv.setViewName("WEB-INF/Views/filmForm.jsp");
+		} else {
+			dao.updateFilm(f);
+			mv.addObject("film", f);
+			mv.setViewName("WEB-INF/Views/display.jsp");
+		}
 		return mv;
 	}
 
