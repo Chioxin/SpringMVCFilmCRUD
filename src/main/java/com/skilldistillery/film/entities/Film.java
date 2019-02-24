@@ -3,11 +3,20 @@ package com.skilldistillery.film.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Film {
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class Film {	
 	private int id;
+	@Size(min=1)
 	private String title;
+	@Size(min=1)
 	private String description;
 	private String releaseYear;
+	@Min(1)
+	@Max(6)
 	private int languageId;
 	private int rentalDuration;
 	private double rentalRate;

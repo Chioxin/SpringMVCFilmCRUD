@@ -11,50 +11,32 @@
 	</head>
 	<body>
 	
-		<form action="addFilm.do" method="POST">
-		 	Title:<br>
-			<input type="text" name="Title"><br>
-		 	Description:<br>
-			<input type="text" name="Description"><br>
-		 <!-- 	Rating:<br> -->
-			<!-- <input type="text" name="Rating"><br>
-		 	Length:<br> -->
-			<!-- <input type="text" name="Length"><br>
-		 	Release Year:<br>
-			<input type="text" name="ReleaseYear"><br>
-		 	Rental Rate:<br>
-			<input type="text" name="RentalRate"><br>
-		 	Rental Duration:<br>
-			<input type="text" name="RentalDuration"><br>
-		 	Replacement Cost:<br>
-			<input type="text" name="ReplacementCost"><br>
-		 	Special Features:<br>
-			< input type="text" name="SpecialFeatures"><br>-->
-			Language<br>
-			<select name="LanguageId">
+		<form:form action="addFilm.do" method="POST" modelAttribute="film">
+		 	<form:label path="title">Title:</form:label>
+		 	<form:input path="title" />
+		 	<form:errors path="title"/>
+		 	<br>
+		 	<form:label path="description">Description:</form:label>
+		 	<form:input path="description" />
+		 	<form:errors path="description"/>
+		 	<br>
+		 	
+			<form:label path="languageId"> Language:</form:label>
+			
+			<form:select path="languageId" name="languageId">
 				<option value="1">English</option>
 				<option value="2">Italian</option>
 				<option value="3">Japanese</option>
 				<option value="4">Manderin</option>
-				<option value="5">German</option>
-			</select>
+				<option value="5">French</option>
+				<option value="6">German</option>
+			</form:select>
 			
 			
 			<input type="submit" value="submit">
-		</form>
+		</form:form>
 		
-		<%-- <form:form action="add.do" method="POST" modelAttribute="film" >
-			
-			<br />
-			<form:label path="Language">Language:</form:label>
-			<form:input path="Language" />
-			<form:errors path="Language" />
-			<br />
-			<form:label path="SpecialFeatures">Special Features:</form:label>
-			<form:input path="SpecialFeatures" />
-			<form:errors path="SpecialFeatures" />
+
 		
-			
-		</form:form> --%>
 	</body>
 </html>
