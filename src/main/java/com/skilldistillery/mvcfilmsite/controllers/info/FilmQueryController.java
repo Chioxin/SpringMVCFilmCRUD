@@ -34,15 +34,16 @@ public class FilmQueryController {
 	public ModelAndView idSearch(@RequestParam(value = "filmId") int id) {
 		ModelAndView mv = new ModelAndView();
 		Film f = null;
-		boolean searchSuccess = true;
+		String failedSearch = "";
 		try {
 			f = dao.findFilmById(id);
 			mv.addObject("film", f);
 			mv.setViewName("WEB-INF/Views/display.jsp");
 		} catch (Throwable e) {
-			mv.setViewName("WEB-INF/Views/indexFailedSearch.jsp");
-			searchSuccess=false;
-			mv.addObject("searchSuccess", searchSuccess);
+			mv.setViewName("WEB-INF/Views/index.jsp");
+			
+			failedSearch=""+id;
+			mv.addObject("failedSearch", failedSearch);
 		}
 		return mv;
 

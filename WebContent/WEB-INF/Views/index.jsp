@@ -13,6 +13,9 @@
 </head>
 <body>
 	<h1>Welcome to the new and improved Film Database query!</h1>
+	<c:if test="${not empty failedSearch}"> 
+	<h3>Your Search for ${failedSearch } yielded no results</h3>
+	</c:if>
 	<p>
 		Please choose from the following options:<br> Search for a film
 		by<br>
