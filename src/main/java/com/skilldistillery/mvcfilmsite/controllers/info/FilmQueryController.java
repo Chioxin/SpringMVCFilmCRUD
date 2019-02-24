@@ -88,12 +88,12 @@ public class FilmQueryController {
 	}
 //	update button controller
 	@RequestMapping(path="update.do", method=RequestMethod.POST)
-	public ModelAndView updateFiilm() {
+	public ModelAndView updateFilm(@RequestParam(value="film")Film f) {
 		ModelAndView mv = new ModelAndView();
 		dao.updateFilm(f);
-		
-		
-		return null;
+		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/Views/display.jsp");
+		return mv;
 	}
 
 }
