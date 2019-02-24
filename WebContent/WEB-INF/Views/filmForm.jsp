@@ -16,7 +16,7 @@
 			<input type="text" name="Title"><br>
 		 	Description:<br>
 			<input type="text" name="Description"><br>
-		 	Rating:<br>
+		 <!-- 	Rating:<br> -->
 			<!-- <input type="text" name="Rating"><br>
 		 	Length:<br> -->
 			<!-- <input type="text" name="Length"><br>

@@ -1,6 +1,7 @@
 package com.skilldistillery.mvcfilmsite.controllers.info;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,9 @@ public class FilmQueryController {
 	@RequestMapping(path = "search.do", params="keyWord", method = RequestMethod.GET)
 	public ModelAndView keyWordSearch(@RequestParam(value = "keyWord") String keyWord) {
 		ModelAndView mv = new ModelAndView();
-		List<Film> f = dao.findFilmByKeyWord(keyWord);
-		mv.addObject("film", f);
+		
+		List<Film> films = new ArrayList<Film>(dao.findFilmByKeyWord(keyWord));
+		mv.addObject("filmList", films);
 		mv.setViewName("WEB-INF/Views/display.jsp");
 		return mv;
 	}
@@ -71,5 +73,6 @@ public class FilmQueryController {
 		mv.setViewName("WEB-INF/Views/index.jsp");
 		return mv;
 	}
+	
 		
 	}
