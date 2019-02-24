@@ -33,32 +33,36 @@
 			</c:if>
 			<h2>Film: ${film.title}(${film.releaseYear})
 				(rated:${film.rating})</h2>
-			<p>
-			<c:if test="${not empty film.category }">
-			Category: ${film.category}
-			</c:if>
-			
-			Length (${film.length} minutes) Language: ${film.language}
-			</p>
-			<p>Rental Rate: $${film.rentalRate} for ${film.rentalDuration}
-				days</p>
-			<p></p>
-			<p>
 			<h3>Description</h3>
 			<blockquote>${film.description }</blockquote>
-			<h3>Special Features</h3>
+			<p>
+				<c:if test="${not empty film.category }">
+					<strong>Category:</strong> ${film.category}</c:if>
+				<br>
+				<c:if test="${not empty film.language }">
+					<strong>Language:</strong> ${film.language}</c:if>
+				<br>
+				<c:if test="${not empty film.specialFeatures }">
+					<strong>Special Features:</strong> ${film.specialFeatures }</c:if>
+				<br>
+				<c:if test="${not empty film.length }">
+					<strong>Length:</strong> ${film.length} minutes</c:if>
+				<br>
+				<c:if
+					test="${(not empty film.rentalRate) and (not empty film.rentalDuration)}">
+					<strong>Rental Rate:</strong> $${film.rentalRate} for ${film.rentalDuration} days</c:if>
+			</p>
 
 			<c:if test="${not empty film.cast}">
 				<div>
 					<h3>Actors</h3>
 					<ul>
 						<c:forEach var="actor" items="${film.cast}">
-							<li>${actor.firstName}${actor.lastName}</li>
+							<li>${actor.firstName} ${actor.lastName}</li>
 						</c:forEach>
 					</ul>
 				</div>
 			</c:if>
-			</p>
 		</div>
 
 		<div id="filmEditForm">
@@ -73,8 +77,13 @@
 				<form:errors path="description" />
 				<br />
 				<form:label path="rating">Rating:</form:label>
-				<form:input path="rating" />
-				<form:errors path="rating" />
+				<form:select path="languageId" name="languageId">
+					<option value="G">G</option>
+					<option value="PG">PG</option>
+					<option value="PG13">PG-13</option>
+					<option value="R">R</option>
+					<option value="NC17">NC-17</option>
+				</form:select>
 				<br />
 				<form:label path="length">Length:</form:label>
 				<form:input path="length" />
@@ -101,7 +110,6 @@
 				<form:errors path="specialFeatures" />
 				<br /> --%>
 				<form:label path="languageId">Language: </form:label>
-				<form:input path="languageId" />
 				<form:select path="languageId" name="languageId">
 					<option value="1">English</option>
 					<option value="2">Italian</option>
@@ -112,7 +120,7 @@
 				</form:select>
 				<br>
 				<input type="hidden" name="id" value="${film.id }" />
-				<input type="submit" value="Update" />
+				<input type="submit" value="Update Changes" />
 			</form:form>
 			<form:form action="delete.do" method="POST" modelAttribute="film">
 

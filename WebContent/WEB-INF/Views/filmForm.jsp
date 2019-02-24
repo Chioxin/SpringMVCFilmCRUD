@@ -22,7 +22,6 @@
 		 	<br>
 		 	
 			<form:label path="languageId"> Language:</form:label>
-			
 			<form:select path="languageId" name="languageId">
 				<option value="1">English</option>
 				<option value="2">Italian</option>
