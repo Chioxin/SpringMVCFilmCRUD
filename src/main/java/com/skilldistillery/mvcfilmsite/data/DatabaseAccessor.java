@@ -1,5 +1,6 @@
 package com.skilldistillery.mvcfilmsite.data;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.skilldistillery.film.entities.Actor;
@@ -11,6 +12,6 @@ public interface DatabaseAccessor {
   public List<Actor> findActorsByFilmId(int filmId);
   public List<Film> findFilmByKeyWord(String key);
   public Film insertFilm(Film inputFilm);
-  public void deleteFilm(Film deleteFilm);
+  public void deleteFilm(Film deleteFilm) throws SQLException;
   public Film updateFilm(Film modifiedFilm);
 }

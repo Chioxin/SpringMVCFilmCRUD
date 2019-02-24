@@ -243,7 +243,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return myFilm;
 	}
 
-	public void deleteFilm(Film deleteFilm) {
+	@SuppressWarnings("finally")
+	public void deleteFilm(Film deleteFilm) throws SQLException {
 		if (deleteFilm != null) {
 
 			String query = "DELETE FROM film WHERE id = ?";
@@ -263,12 +264,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			} catch (SQLException e) {
 				System.err.println("Something went wrong in deleteFilm method attempting a delete.");
 				e.printStackTrace();
-				try {
 					conn.rollback();
+					throw e;
 
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
 			} finally {
 				try {
 					conn.commit();

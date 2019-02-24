@@ -1,5 +1,6 @@
 package com.skilldistillery.mvcfilmsite.controllers.info;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,16 +89,23 @@ public class FilmQueryController {
 //		post delete
 	@RequestMapping(path = "delete.do", method = RequestMethod.POST)
 	public ModelAndView deleteFilm(@RequestParam(value = "filmId") int id) {
-
-		try {
-			dao.deleteFilm(dao.findFilmById(id));
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/index.jsp");
+
+			try {
+				dao.deleteFilm(dao.findFilmById(id));
+			} catch (SQLException e) {
+				System.out.println("this followed the error path!!!!!!!!!!!!!!!");
+				mv.setViewName("WEB-INF/Views/display.jsp");
+				mv.addObject("filmNotDeleted", id);
+				try {
+					mv.addObject("film", dao.findFilmById(id));
+				} catch (Throwable e1) {
+				}
+			} catch (Throwable e) {
+			}
+			
+		System.out.println(mv.getViewName());
 		return mv;
 	}
 

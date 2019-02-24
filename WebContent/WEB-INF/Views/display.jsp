@@ -25,6 +25,9 @@
 
 	<c:if test="${not empty film}">
 		<div id="displayFilm">
+		<c:if test="${not empty filmNotDeleted }">
+				<h2>Delete of film ${film.title }failed!</h2>
+			</c:if>
 			<h2>Film: ${film.title}(${film.releaseYear})
 				(rated:${film.rating})</h2>
 			<p>Length (${film.length}) Language: ${film.language}</p>
@@ -50,6 +53,7 @@
 		</div>
 
 		<div id="filmEditForm">
+			
 			<form:form action="update.do" method="POST" modelAttribute="film">
 				<form:label path="title">Title:</form:label>
 				<form:input path="title" />
