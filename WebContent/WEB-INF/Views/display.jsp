@@ -53,39 +53,50 @@
 			<form:form action="update.do" method="POST" modelAttribute="film">
 				<form:label path="title">Title:</form:label>
 				<form:input path="title" />
+				<form:errors path="title" />
 				<br />
 				<form:label path="description">Description:</form:label>
 				<form:input path="description" />
+				<form:errors path="description" />
 				<br />
 				<form:label path="rating">Rating:</form:label>
 				<form:input path="rating" />
+				<form:errors path="rating" />
 				<br />
 				<form:label path="length">Length:</form:label>
 				<form:input path="length" />
+				<form:errors path="length" />
 				<br />
 				<form:label path="releaseYear">Release Year:</form:label>
 				<form:input path="releaseYear" />
+				<form:errors path="releaseYear" />
 				<br />
 				<form:label path="rentalRate">Rental Rate:</form:label>
 				<form:input path="rentalRate" />
+				<form:errors path="rentalRate" />
 				<br />
 				<form:label path="rentalDuration">Rental Duration:</form:label>
 				<form:input path="rentalDuration" />
+				<form:errors path="rentalDuration" />
 				<br />
 				<form:label path="replacementCost">Replacement Cost:</form:label>
 				<form:input path="replacementCost" />
+				<form:errors path="replacementCost" />
 				<br />
 				<form:label path="specialFeatures">Special Features:</form:label>
 				<form:input path="specialFeatures" />
+				<form:errors path="specialFeatures" />
 				<br />
-				<form:label path="Language">Language: </form:label>
-				<select name="Language">
-					<option value="English">English</option>
-					<option value="Italian">Italian</option>
-					<option value="Japanese">Japanese</option>
-					<option value="Manderin">Manderin</option>
-					<option value="German">German</option>
-				</select>
+				<form:label path="languageId">Language: </form:label>
+				<form:input path="languageId"/>
+				<form:select path="languageId" select name="languageId">
+					<option value="1">English</option>
+					<option value="2">Italian</option>
+					<option value="3">Japanese</option>
+					<option value="4">Manderin</option>
+					<option value="5">French</option>
+					<option value="6">German</option>
+				</form:select>
 				<br>
 				<input type="submit" value="Update" />
 			</form:form>
