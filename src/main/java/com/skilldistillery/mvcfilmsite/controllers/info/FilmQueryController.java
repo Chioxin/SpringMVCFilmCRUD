@@ -89,11 +89,11 @@ public class FilmQueryController {
 
 //	update button controller
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
-	public ModelAndView updateFilm(@Valid Film f, Errors e) {
+	public ModelAndView updateFilm(@Valid @RequestParam(value="film") Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
 
 		if (e.hasErrors()) {
-			mv.setViewName("WEB-INF/Views/filmForm.jsp");
+			mv.setViewName("WEB-INF/Views/display.jsp");
 		} else {
 			dao.updateFilm(f);
 			mv.addObject("film", f);
