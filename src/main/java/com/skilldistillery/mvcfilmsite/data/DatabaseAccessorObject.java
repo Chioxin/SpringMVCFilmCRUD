@@ -348,7 +348,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			} else {
 				set.append(", ");
 			}
-			set.append("release_year = \"" + mFilm.getReleaseYear() + "\"");
+			set.append("release_year = " + mFilm.getReleaseYear());
+//			set.append("release_year = \"" + mFilm.getReleaseYear() + "\"");
 		}
 		if (mFilm.getLanguageId() != oFilm.getLanguageId()) {
 			if (doNotAddComma) {
@@ -390,14 +391,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			}
 			set.append("replacement_cost = " + mFilm.getReplacementCost());
 		}
-		if ((mFilm.getSpecialFeatures() != null && !mFilm.getSpecialFeatures().equals(""))&& !mFilm.getSpecialFeatures().equals(oFilm.getSpecialFeatures())) {
-			if (doNotAddComma) {
-				doNotAddComma = false;
-			} else {
-				set.append(", ");
-			}
-			set.append("special_features = \"" + mFilm.getSpecialFeatures() + "\"");
-		}
+//		if ((mFilm.getSpecialFeatures() != null && !mFilm.getSpecialFeatures().equals(""))&& !mFilm.getSpecialFeatures().equals(oFilm.getSpecialFeatures())) {
+//			if (doNotAddComma) {
+//				doNotAddComma = false;
+//			} else {
+//				set.append(", ");
+//			}
+//			set.append("special_features = \"" + mFilm.getSpecialFeatures() + "\"");
+//		}
 		if ((mFilm.getRating() != null && !mFilm.getRating().equals("")) && !mFilm.getRating().equals(oFilm.getRating())) {
 			if (doNotAddComma) {
 				doNotAddComma = false;

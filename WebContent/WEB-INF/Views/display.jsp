@@ -83,10 +83,10 @@
 				<form:input path="replacementCost" />
 				<form:errors path="replacementCost" />
 				<br />
-				<form:label path="specialFeatures">Special Features:</form:label>
+				<%-- <form:label path="specialFeatures">Special Features:</form:label>
 				<form:input path="specialFeatures" />
 				<form:errors path="specialFeatures" />
-				<br />
+				<br /> --%>
 				<form:label path="languageId">Language: </form:label>
 				<form:input path="languageId"/>
 				<form:select path="languageId" name="languageId">
