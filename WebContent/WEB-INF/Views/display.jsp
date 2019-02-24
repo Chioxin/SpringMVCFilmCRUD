@@ -89,7 +89,7 @@
 				<br />
 				<form:label path="languageId">Language: </form:label>
 				<form:input path="languageId"/>
-				<form:select path="languageId" select name="languageId">
+				<form:select path="languageId" name="languageId">
 					<option value="1">English</option>
 					<option value="2">Italian</option>
 					<option value="3">Japanese</option>
@@ -101,8 +101,9 @@
 				<input type="submit" value="Update" />
 			</form:form>
 			<form:form action="delete.do" method="POST" modelAttribute="film">
-				<input name="filmId" value=${film.id } />
-				<input type="submit" value="Delete" />
+			
+				<input name="filmId" type="hidden" value=${film.id } />
+				<input type="submit" value="Would you like to delete this film?" />
 			</form:form>
 
 		</div>
