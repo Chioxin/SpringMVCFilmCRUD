@@ -21,8 +21,8 @@
 		by<br>
 	</p>
 	<form action="search.do" method="GET">
-		<label for="search">Search by Film ID:</label> 
-		<input type="text" name="filmId" /> 
+		<label for="search" >Search by Film ID:</label> 
+		<input type="text"  name="filmId" required /> 
 		<input type="submit" value="submit"/>
 	</form>
 	<br>

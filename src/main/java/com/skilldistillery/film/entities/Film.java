@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 public class Film {
 	private int id;
-	@Size(min = 2)
+	@Size(min = 1)
 	private String title;
 	@Size(min = 1)
 	private String description;

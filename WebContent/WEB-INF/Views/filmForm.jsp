@@ -13,11 +13,11 @@
 
 	<form:form action="addFilm.do" method="POST" modelAttribute="film">
 		<form:label path="title">Title:</form:label>
-		<form:input path="title" />
+		<form:input path="title" required="required" />
 		<form:errors path="title" />
 		<br>
 		<form:label path="description">Description:</form:label>
-		<form:input path="description" />
+		<form:input path="description" required="required" />
 		<form:errors path="description" />
 		<br>
 		<form:label path="rating">Rating:</form:label>

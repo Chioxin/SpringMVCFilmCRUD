@@ -36,7 +36,7 @@ public class FilmQueryController {
 		Film f = null;
 		String failedSearch = "";
 		f = dao.findFilmById(id);
-		if (f != null) {
+		 if (f != null) {
 			mv.addObject("film", f);
 			mv.addObject("updatedFilm", f); // we want to update the film separately from the original film.
 			mv.setViewName("WEB-INF/Views/display.jsp");
@@ -67,18 +67,20 @@ public class FilmQueryController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/filmForm.jsp");
 		mv.addObject("film", f);
+		System.out.println("made it to add.do addFilmForm");
 		return mv;
 	}
 
 	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilmToDB(@Valid Film f, Errors e) {
 		ModelAndView mv = new ModelAndView();
-//		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + e.getErrorCount());
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + e.getErrorCount());
 		if (e.hasErrors()) {
 			mv.setViewName("WEB-INF/Views/filmForm.jsp");
 		} else {
 			Film insertedFilm = dao.insertFilm(f);
 			mv.addObject("film", insertedFilm);
+			mv.addObject("updatedFilm", insertedFilm);
 			mv.setViewName("WEB-INF/Views/display.jsp");
 		}
 		return mv;
