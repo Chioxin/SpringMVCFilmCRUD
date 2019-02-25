@@ -38,6 +38,7 @@ public class FilmQueryController {
 		f = dao.findFilmById(id);
 		if (f != null) {
 			mv.addObject("film", f);
+			mv.addObject("updatedFilm", f); // we want to update the film separately from the original film.
 			mv.setViewName("WEB-INF/Views/display.jsp");
 		} else {
 			mv.setViewName("WEB-INF/Views/index.jsp");
@@ -100,21 +101,25 @@ public class FilmQueryController {
 	}
 
 //		update button controller
+	//Denise or WHOMEVER, I can't figure out why the @Valid annotation isn't
+	//working on the fields in the JSP. Would really love a pointer. -GMK
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
-	public ModelAndView updateFilm(@Valid Film f, Errors e) {
+	public ModelAndView updateFilm(@Valid Film updatedFilm, Errors e) {
 		Film originalFilm = null;
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/Views/display.jsp");
-
+		mv.addObject("updatedFilm", updatedFilm);
+		
 		if (e.hasErrors()) {
 			mv.addObject("updateFailure", true);
 		} else {
-			if (!dao.updateFilm(f)) {
+			if (!dao.updateFilm(updatedFilm)) {
 				mv.addObject("updateFailure", true);
 			}
 		}
-		if (f != null) {
-			originalFilm = dao.findFilmById(f.getId());
+		
+		if (updatedFilm != null) {
+			originalFilm = dao.findFilmById(updatedFilm.getId());
 			mv.addObject("film", originalFilm);
 		}
 		return mv;

@@ -322,10 +322,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			conn.setAutoCommit(false);
 //			System.out.println(statement);
 			statement.executeUpdate();
+			System.out.println("<==================DAO Error====================>");
 			updateSuccess = true;
 
 		} catch (SQLException e) {
-			System.err.println("Something went wrong in updateFilm method attempting an update.");
+			System.out.println("Something went wrong in updateFilm method attempting an update.");
 			e.printStackTrace();
 			try {
 				conn.rollback();

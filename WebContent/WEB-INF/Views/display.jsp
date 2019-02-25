@@ -75,7 +75,7 @@
 
 		<div id="filmEditForm">
 
-			<form:form action="update.do" method="POST" modelAttribute="film">
+			<form:form action="update.do" method="POST" modelAttribute="updatedFilm">
 				<form:input type="hidden" path="id" />
 				<form:label path="title">Title:</form:label>
 				<form:input path="title" />
@@ -128,12 +128,12 @@
 					<option value="6">German</option>
 				</form:select>
 				<br>
-				<input type="hidden" name="id" value="${film.id }" />
+				<input type="hidden" name="id" value="${updatedFilm.id }" />
 				<input type="submit" value="Update Changes" />
 			</form:form>
 			<form:form action="delete.do" method="POST" modelAttribute="film">
 
-				<input name="filmId" type="hidden" value=${film.id } />
+				<input name="filmId" type="hidden" value=${updatedFilm.id } />
 				<input type="submit" value="Would you like to delete this film?" />
 			</form:form>
 			
