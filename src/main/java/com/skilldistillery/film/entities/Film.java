@@ -13,7 +13,7 @@ public class Film {
 	private String title;
 	@Size(min = 1)
 	private String description;
-	private String releaseYear;
+	private int releaseYear;
 	@Min(1)
 	@Max(6)
 	private int languageId;
@@ -38,7 +38,7 @@ public class Film {
 
 	
 	
-public Film(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
+public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 			List<Actor> cast, String language, String category) {
 		super();
@@ -83,7 +83,7 @@ public Film(int id, String title, String description, String releaseYear, int la
 		this.description = description;
 	}
 
-	public String getReleaseYear() {
+	public int getReleaseYear() {
 //		String year = "";
 //		if (releaseYear != null && !releaseYear.equals("")) {
 //			year.substring(0, 4);
@@ -91,7 +91,7 @@ public Film(int id, String title, String description, String releaseYear, int la
 		return releaseYear;
 	}
 
-	public void setReleaseYear(String release_year) {
+	public void setReleaseYear(int release_year) {
 		this.releaseYear = release_year;
 	}
 
@@ -203,7 +203,7 @@ public Film(int id, String title, String description, String releaseYear, int la
 		result = prime * result + languageId;
 		result = prime * result + length;
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
-		result = prime * result + ((releaseYear == null) ? 0 : releaseYear.hashCode());
+		result = prime * result + releaseYear;
 		result = prime * result + rentalDuration;
 		long temp;
 		temp = Double.doubleToLongBits(rentalRate);
@@ -255,10 +255,7 @@ public Film(int id, String title, String description, String releaseYear, int la
 				return false;
 		} else if (!rating.equals(other.rating))
 			return false;
-		if (releaseYear == null) {
-			if (other.releaseYear != null)
-				return false;
-		} else if (!releaseYear.equals(other.releaseYear))
+		if (releaseYear != other.releaseYear)
 			return false;
 		if (rentalDuration != other.rentalDuration)
 			return false;

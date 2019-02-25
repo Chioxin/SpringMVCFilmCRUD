@@ -33,7 +33,9 @@
 			<c:if test="${not empty updateFailure }">
 				<h2>Update of film ${film.title } failed!</h2>
 			</c:if>
-			<h2>Film: ${film.title}(${film.releaseYear})
+			
+			
+			<h2>Film: ${film.title}<c:if test="${film.releaseYear != 0 }">(${film.releaseYear})</c:if>
 				(rated:${film.rating})</h2>
 			<h3>Description</h3>
 			<blockquote>${film.description }</blockquote>

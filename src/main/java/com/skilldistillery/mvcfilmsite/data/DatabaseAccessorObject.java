@@ -55,7 +55,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		int id = rs.getInt("film.id");
 		String title = rs.getString("film.title");
 		String description = rs.getString("film.description");
-		String releaseYear = rs.getString("film.release_year");
+		int releaseYear = rs.getInt("film.release_year");
 		int languageId = rs.getInt("film.language_id");
 		int rentalDuration = rs.getInt("film.rental_duration");
 		double rentalRate = rs.getDouble("film.rental_rate");
@@ -263,6 +263,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	public boolean deleteFilm(Film deleteFilm) {
+		boolean deleteSuccess = false;
 		if (deleteFilm != null) {
 
 			String query = "DELETE FROM film WHERE id = ?";
@@ -278,6 +279,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 				statement.setInt(1, deleteFilm.getId());
 				statement.executeUpdate();
+				
+				deleteSuccess = true;
 
 			} catch (SQLException e) {
 				System.err.println("Something went wrong in deleteFilm method attempting a delete.");
@@ -297,12 +300,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					e.printStackTrace();
 				}
 			}
-
-			return true;
-
-		} else {
-			return false;
 		}
+		
+		return deleteSuccess;
 	}
 
 	@Override
@@ -366,8 +366,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			}
 			set.append("description = \"" + mFilm.getDescription() + "\"");
 		}
-		if ((mFilm.getReleaseYear() != null && !mFilm.getReleaseYear().equals(""))
-				&& !mFilm.getReleaseYear().equals(oFilm.getReleaseYear())) {
+		if ((mFilm.getReleaseYear() != oFilm.getReleaseYear())) {
 			if (doNotAddComma) {
 				doNotAddComma = false;
 			} else {
