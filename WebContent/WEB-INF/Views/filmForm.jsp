@@ -20,6 +20,15 @@
 		<form:input path="description" />
 		<form:errors path="description" />
 		<br>
+		<form:label path="rating">Rating:</form:label>
+		<form:select path="rating" name="languageId">
+			<option value="G">G</option>
+			<option value="PG">PG</option>
+			<option value="PG13">PG-13</option>
+			<option value="R">R</option>
+			<option value="NC17">NC-17</option>
+		</form:select>
+		<br>
 		<form:label path="languageId"> Language:</form:label>
 		<form:select path="languageId" name="languageId">
 			<option value="1">English</option>

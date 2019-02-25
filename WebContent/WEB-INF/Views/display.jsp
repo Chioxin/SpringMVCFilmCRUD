@@ -29,7 +29,7 @@
 				<h2>Delete of film ${film.title } failed!</h2>
 			</c:if>
 			<c:if test="${not empty updateFailure }">
-				<h2>Delete of film ${film.title } failed!</h2>
+				<h2>Update of film ${film.title } failed!</h2>
 			</c:if>
 			<h2>Film: ${film.title}(${film.releaseYear})
 				(rated:${film.rating})</h2>
@@ -37,19 +37,23 @@
 			<blockquote>${film.description }</blockquote>
 			<p>
 				<c:if test="${not empty film.category }">
-					<strong>Category:</strong> ${film.category}</c:if>
+					<strong>Category:</strong> ${film.category}
 				<br>
+				</c:if>
 				<c:if test="${not empty film.language }">
-					<strong>Language:</strong> ${film.language}</c:if>
+					<strong>Language:</strong> ${film.language}
 				<br>
+				</c:if>
 				<c:if test="${not empty film.specialFeatures }">
-					<strong>Special Features:</strong> ${film.specialFeatures }</c:if>
+					<strong>Special Features:</strong> ${film.specialFeatures }
 				<br>
-				<c:if test="${not empty film.length }">
-					<strong>Length:</strong> ${film.length} minutes</c:if>
+				</c:if>
+				<c:if test="${not empty film.length and film.length != 0}">
+					<strong>Length:</strong> ${film.length} minutes
 				<br>
+				</c:if>
 				<c:if
-					test="${(not empty film.rentalRate) and (not empty film.rentalDuration)}">
+					test="${(not empty film.rentalRate and film.rentalRate != 0.0) and (not empty film.rentalDuration and film.rentalDuration != 0)}">
 					<strong>Rental Rate:</strong> $${film.rentalRate} for ${film.rentalDuration} days</c:if>
 			</p>
 
@@ -68,6 +72,7 @@
 		<div id="filmEditForm">
 
 			<form:form action="update.do" method="POST" modelAttribute="film">
+				<form:input type="hidden" path="id" />
 				<form:label path="title">Title:</form:label>
 				<form:input path="title" />
 				<form:errors path="title" />

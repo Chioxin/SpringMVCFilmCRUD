@@ -68,7 +68,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String category = findCategoriesByFilmId(id);
 		myFilm = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 				replacementCost, rating, specialFeatures, cast, language, category);
-		System.out.println("DAO::AFTER CONSTRUCTOR");
 
 		return myFilm;
 	}
@@ -321,7 +320,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 			statement = conn.prepareStatement(query.toString());
 			conn.setAutoCommit(false);
-			System.out.println(statement);
+//			System.out.println(statement);
 			statement.executeUpdate();
 			updateSuccess = true;
 

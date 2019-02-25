@@ -76,8 +76,8 @@ public class FilmQueryController {
 		if (e.hasErrors()) {
 			mv.setViewName("WEB-INF/Views/filmForm.jsp");
 		} else {
-			dao.insertFilm(f);
-			mv.addObject("film", f);
+			Film insertedFilm = dao.insertFilm(f);
+			mv.addObject("film", insertedFilm);
 			mv.setViewName("WEB-INF/Views/display.jsp");
 		}
 		return mv;
@@ -96,24 +96,26 @@ public class FilmQueryController {
 			mv.addObject("filmNotDeleted", id);
 			mv.addObject("film", filmToDelete);
 		}
-		
-		System.out.println(mv.getViewName());
 		return mv;
 	}
 
 //		update button controller
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(@Valid Film f, Errors e) {
+		Film originalFilm = null;
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("film", f);
 		mv.setViewName("WEB-INF/Views/display.jsp");
 
 		if (e.hasErrors()) {
-			mv.setViewName("WEB-INF/Views/display.jsp");
+			mv.addObject("updateFailure", true);
 		} else {
 			if (!dao.updateFilm(f)) {
 				mv.addObject("updateFailure", true);
 			}
+		}
+		if (f != null) {
+			originalFilm = dao.findFilmById(f.getId());
+			mv.addObject("film", originalFilm);
 		}
 		return mv;
 	}

@@ -84,8 +84,11 @@ public Film(int id, String title, String description, String releaseYear, int la
 	}
 
 	public String getReleaseYear() {
+//		String year = "";
+//		if (releaseYear != null && !releaseYear.equals("")) {
+//			year.substring(0, 4);
+//		}
 		return releaseYear;
-//		return releaseYear.substring(0, 4);
 	}
 
 	public void setReleaseYear(String release_year) {
