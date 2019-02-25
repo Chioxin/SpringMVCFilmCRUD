@@ -8,6 +8,10 @@
 
 > Built with an MVC model in Spring
 
+**Project Description**
+
+This application will allow a front end user to view, add, edit, film objects, which are then changed in the MySQL database. 
+
 
 **Technologies  & Techniques Used**
 
