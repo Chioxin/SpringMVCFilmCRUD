@@ -98,6 +98,7 @@ public class FilmQueryController {
 			mv.setViewName("WEB-INF/Views/display.jsp");
 			mv.addObject("filmNotDeleted", id);
 			mv.addObject("film", filmToDelete);
+			mv.addObject("updatedFilm", filmToDelete);
 		}
 		return mv;
 	}

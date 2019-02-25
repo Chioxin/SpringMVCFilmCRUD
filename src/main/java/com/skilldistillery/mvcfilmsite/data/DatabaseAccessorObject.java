@@ -322,7 +322,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			conn.setAutoCommit(false);
 //			System.out.println(statement);
 			statement.executeUpdate();
-			System.out.println("<==================DAO Error====================>");
 			updateSuccess = true;
 
 		} catch (SQLException e) {
