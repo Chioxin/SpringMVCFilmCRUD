@@ -29,6 +29,26 @@
 			<option value="NC17">NC-17</option>
 		</form:select>
 		<br>
+		<form:label path="length">Length:</form:label>
+		<form:input path="length" value="30" />
+		<form:errors path="length" />
+		<br />
+		<form:label path="releaseYear">Release Year:</form:label>
+		<form:input path="releaseYear" value="2000"/>
+		<form:errors path="releaseYear" />
+		<br />
+		<form:label path="rentalRate">Rental Rate:</form:label>
+		<form:input path="rentalRate" value="0.99"/>
+		<form:errors path="rentalRate" />
+		<br />
+		<form:label path="rentalDuration">Rental Duration:</form:label>
+		<form:input path="rentalDuration" value="3"/>
+		<form:errors path="rentalDuration" />
+		<br />
+		<form:label path="replacementCost">Replacement Cost:</form:label>
+		<form:input path="replacementCost" value="5.00"/>
+		<form:errors path="replacementCost" />
+		<br />
 		<form:label path="languageId"> Language:</form:label>
 		<form:select path="languageId" name="languageId">
 			<option value="1">English</option>
