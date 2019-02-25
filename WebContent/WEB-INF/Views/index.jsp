@@ -19,20 +19,22 @@
 	<p>
 		Please choose from the following options:<br> Search for a film
 		by<br>
-	<form action="search.do" method="GET">
-		<label for="search">Search by Film ID:</label> <input type="text"
-			name="filmId"> <input type="submit" value="submit">
-	</form>
-	<br>
-	<form action="search.do" method="GET">
-		<label for="search">Search by Keyword:</label> <input type="text"
-			name="keyWord"> <input type="submit" value="submit">
-	</form>
 	</p>
+	<form action="search.do" method="GET">
+		<label for="search">Search by Film ID:</label> 
+		<input type="text" name="filmId" /> 
+		<input type="submit" value="submit"/>
+	</form>
+	<br>
+	<form action="search.do" method="GET">
+		<label for="search">Search by Keyword:</label> 
+		<input type="text" name="keyWord"/> 
+		<input type="submit" value="submit"/>
+	</form>
 
 	<br>
-
 	<form action="add.do" method="GET">
+		<label>Add a Film: </label>
 		<input type="submit" value="Add Film" />
 	</form>
 	
