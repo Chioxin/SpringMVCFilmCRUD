@@ -18,6 +18,8 @@
 					<li><a href="search.do?filmId=<c:out value="${aFilm.id}"/>">${aFilm.title}</a></li>
 				</c:forEach>
 			</ul>
+			
+			<a href="home.do">Return to Search Page</a>
 
 		</div>
 	</c:if>
@@ -132,6 +134,8 @@
 				<input name="filmId" type="hidden" value=${film.id } />
 				<input type="submit" value="Would you like to delete this film?" />
 			</form:form>
+			
+			<a href="home.do">Return to Search Page</a>
 
 		</div>
 	</c:if>

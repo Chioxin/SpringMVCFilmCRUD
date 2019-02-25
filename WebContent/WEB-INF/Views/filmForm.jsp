@@ -39,9 +39,10 @@
 			<option value="6">German</option>
 		</form:select>
 
-
+		<br>
 		<input type="submit" value="submit">
 	</form:form>
+	<a href="home.do">Return to Search Page</a>
 
 
 
