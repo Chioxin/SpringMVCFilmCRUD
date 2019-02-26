@@ -104,8 +104,6 @@ public class FilmQueryController {
 	}
 
 //		update button controller
-	//Denise or WHOMEVER, I can't figure out why the @Valid annotation isn't
-	//working on the fields in the JSP. Would really love a pointer. -GMK
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(@Valid Film updatedFilm, Errors e) {
 		Film originalFilm = null;
